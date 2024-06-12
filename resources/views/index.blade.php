@@ -2,57 +2,64 @@
 
 @section('content')
 <div class="hero">
-    <div class="hero-text">
-        <h1>Bienvenidos a CONNIGHT</h1>
-        <p>Somos una empresa dedicada a la organización de los mejores eventos. Nuestro objetivo es ofrecer experiencias inolvidables a todos nuestros clientes.</p>
+    <div class="content">
+        <h1>Conectándote con<br>la noche</h1>
+        <p>Las entradas de los mejores eventos <br>del país al alcance de tu mano</p>
     </div>
-</div>
-
-<div class="carousel-container">
     <div class="carousel">
-        <div class="slide active">
-            <img src="{{ asset('images/slide1.jpg') }}" alt="Slide 1">
+        <div class="image-slider">
+            <div class="slide active">
+                <img src="{{ asset('images/slide1.jpg') }}" alt="Slide 1">
+            </div>
+            <div class="slide">
+                <img src="{{ asset('images/slide2.jpg') }}" alt="Slide 2">
+            </div>
+            <div class="slide">
+                <img src="{{ asset('images/slide3.jpg') }}" alt="Slide 3">
+            </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
-        <div class="slide">
-            <img src="{{ asset('images/slide2.jpg') }}" alt="Slide 2">
-        </div>
-        <div class="slide">
-            <img src="{{ asset('images/slide3.jpg') }}" alt="Slide 3">
-        </div>
-        <!-- Controles del carrusel -->
-        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-        <a class="next" onclick="changeSlide(1)">&#10095;</a>
     </div>
 </div>
 
-<div class="events-section">
+<section class="about">
+    <h2>Sobre Connight</h2>
+    <p>Connight es la plataforma líder en la venta de entradas para los mejores eventos nocturnos del país. Nuestra misión es conectarte con experiencias inolvidables y hacer que tu noche sea única.</p>
+</section>
+
+<section class="events-preview">
     <h2>Próximos Eventos</h2>
-    <div class="events-container">
+    <ul>
         @foreach($events as $event)
-        <div class="event">
-            <h3>{{ $event->name }}</h3>
-            <p>{{ $event->description }}</p>
-            <p>{{ $event->date }}</p>
-            <p>{{ $event->price }}</p>
-        </div>
+            <li>
+                <h3>{{ $event->name }}</h3>
+                <p>{{ $event->description }}</p>
+                <p>Fecha y Hora: {{ $event->date }}</p>
+                <p>Lugar: {{ $event->location }}</p>
+                @if($event->image)
+                    <img src="{{ asset('storage/' . $event->image) }}" alt="{{ $event->name }}" style="width: 100%; max-width: 1080px; height: auto;">
+                @endif
+                <a href="{{ route('tickets.create', $event->id) }}" class="details-btn">Comprar Entradas</a>
+            </li>
         @endforeach
-    </div>
-</div>
+    </ul>
+</section>
 @endsection
 
 @section('scripts')
 <script>
     let slideIndex = 0;
     const slides = document.querySelectorAll('.slide');
-    const totalSlides = slides.length;
 
     const showSlide = (n) => {
-        slides.forEach(slide => slide.classList.remove('active'));
-        slides[n].classList.add('active');
+        slides.forEach((slide, index) => {
+            slide.style.display = (index === n) ? 'block' : 'none';
+        });
     }
 
     const changeSlide = (n) => {
-        slideIndex = (slideIndex + n + totalSlides) % totalSlides;
+        slideIndex = (slideIndex + n + slides.length) % slides.length;
         showSlide(slideIndex);
     }
 
@@ -65,5 +72,9 @@
         showSlide(slideIndex);
         autoSlide();
     });
+
+    const plusSlides = (n) => {
+        changeSlide(n);
+    }
 </script>
 @endsection
