@@ -6,21 +6,20 @@
         <h1>Conectándote con<br>la noche</h1>
         <p>Las entradas de los mejores eventos <br>del país al alcance de tu mano</p>
     </div>
-    <div class="carousel">
-        <div class="image-slider">
-            <div class="slide active">
-                <img src="{{ asset('images/slide1.jpg') }}" alt="Slide 1">
-            </div>
-            <div class="slide">
-                <img src="{{ asset('images/slide2.jpg') }}" alt="Slide 2">
-            </div>
-            <div class="slide">
-                <img src="{{ asset('images/slide3.jpg') }}" alt="Slide 3">
-            </div>
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-        </div>
-    </div>
+    <div class="slider-container">
+        <img
+          class="slider-item"
+          src="{{ asset('images/slide1.jpg') }}" alt="Slide 1"
+        />
+        <img
+          class="slider-item"
+          src="{{ asset('images/slide2.jpg') }}" alt="Slide 2"
+        />
+        <img
+          class="slider-item"
+          src="{{ asset('images/slide3.jpg') }}" alt="Slide 3"
+        />
+      </div>
 </div>
 
 <section class="about">
