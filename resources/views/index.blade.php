@@ -44,6 +44,12 @@
         @endforeach
     </ul>
 </section>
+
+<div>
+    <h1>Escucha tus canciones favoritas mientras ves tus eventos favoritos</h1>
+    <h2>Somos distintos, ERES CONNIGHT</h2>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2VB69OYXdddluhEI3NUBkP?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+</div>
 @endsection
 
 @section('scripts')
